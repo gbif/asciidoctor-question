@@ -24,8 +24,8 @@ module Asciidoctor
         end
 
         new_parent = Asciidoctor::Block.new parent, :open, {:attributes => {'id' => "question_mc_#{id}"}}
-        reader = Asciidoctor::Reader.new(question)
 
+        reader = Asciidoctor::Reader.new(question)
         loop do
           block = Asciidoctor::Parser.next_block reader, new_parent
           break if block.nil?
@@ -53,9 +53,6 @@ module Asciidoctor
         answers_block
       end
 
-      def post_answers(parent, tag)
-
-      end
     end
 
     class PDFMultipleChoiceBlockProcessor < MultipleChoiceBlockProcessor
@@ -65,6 +62,10 @@ module Asciidoctor
           answer.attributes.delete('checked')
         end
         answers_block
+      end
+
+      def post_answers(parent, tag)
+
       end
     end
 
@@ -80,16 +81,6 @@ module Asciidoctor
           answer.attributes['id'] = "answer_mc_#{id}_#{aid += 1}"
         end
         answers_block
-      end
-
-
-      def post_answers(parent, tag)
-        id = tag[:id]
-        parent.blocks.push Asciidoctor::Block.new parent, :pass, :source => "
-            <p style='float: right'>
-              <button onclick='resolve(#{id})'>Lösen</button>
-            </p>"
-        parent
       end
     end
   end

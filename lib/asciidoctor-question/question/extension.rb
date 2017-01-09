@@ -1,6 +1,7 @@
 
 require_relative '../extensions'
 require_relative '../multiple_choice/extension'
+require_relative '../gap/extension'
 require_relative './post_processor'
 
 module Asciidoctor
@@ -14,7 +15,9 @@ module Asciidoctor
       end
 
       def process(parent, source, tag)
+        block = nil
         err = nil
+
         type = tag[:type]
         @id = @id + 1
         tag[:id] = @id
@@ -25,11 +28,16 @@ module Asciidoctor
 
         if err.nil?
           if type == 'mc' or type == 'multiplechoice' or type == 'multiple_choice'
-            process_question_mc parent, source, tag
+            block = process_question_mc parent, source, tag
+          elsif type == 'gap'
+            block = process_question_gap parent, source, tag
           end
         else
-          process_error parent, err, source.lines
+          block = process_error parent, err, source.lines
         end
+
+        #block.title = "Frage #{@id}"
+        block
       end
     end
 
@@ -40,6 +48,10 @@ module Asciidoctor
       def process_question_mc parent, source, tag
         HTMLMultipleChoiceBlockProcessor.new.process parent, source, tag
       end
+
+      def process_question_gap parent, source, tag
+        HTMLGAPBlockProcessor.new.process parent, source, tag
+      end
     end
 
 
@@ -48,6 +60,10 @@ module Asciidoctor
 
       def process_question_mc parent, source, tag
         PDFMultipleChoiceBlockProcessor.new.process parent, source, tag
+      end
+
+      def process_question_gap parent, source, tag
+        PDFGAPBlockProcessor.new.process parent, source, tag
       end
     end
   end

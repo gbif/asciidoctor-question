@@ -17,13 +17,21 @@ module Asciidoctor
         def process_error(parent, err, source_lines)
           lines = ['[NOTE]', '====', 'Fehler! ' + err, '====']
           block = Asciidoctor::Parser.next_block Asciidoctor::Reader.new(lines), parent
-          block.blocks.push Asciidoctor::Parser.next_block Asciidoctor::Reader.new(['[source, asciidoc]', ".Question #{@id}", '----'] + source_lines + ['----']), block
-
+          block.blocks.push Asciidoctor::Parser.next_block Asciidoctor::Reader.new(['[source, asciidoc]', '----'] + source_lines + ['----']), block
           block
         end
 
         def process_error_push(parent, err, source_lines)
           parent.blocks.push process_error parent, err, source_lines
+        end
+
+        def post_answers(parent, tag)
+          id = tag[:id]
+          parent.blocks.push Asciidoctor::Block.new parent, :pass, :source => "
+            <p style=\"margin-bottom: 25px\">
+              <button onclick='resolve(#{id})'>Lösen</button>
+            </p>"
+          parent
         end
       end
     end

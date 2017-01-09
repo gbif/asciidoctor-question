@@ -8,6 +8,21 @@ module Asciidoctor
         head = doc.at_css 'head'
         head.add_child('
           <style id="question">
+            .hidden {
+              display: none;
+            }
+
+            div[id*=question][data-type=gap] gap > input.incorrect {
+              font-weight: bold;
+              color: red;
+            }
+
+
+            div[id*=question][data-type=gap] gap > answer, div[id*=question][data-type=gap] gap > input.correct {
+              font-weight: bold;
+              color: green;
+            }
+
             div[id*=question][data-type=mc] input[type="checkbox"]::before {
               display: inline-block;
               width: 24px;
@@ -28,10 +43,22 @@ module Asciidoctor
 
         head.add_child('<script type="text/javascript">
                           function resolve(questionId) {
-                            q = document.getElementById("question_" + questionId)
-                            if(q.getAttribute("data-type") == "mc") {
+                            var q = document.getElementById("question_" + questionId)
+                            var type = q.getAttribute("data-type")
+                            if(type == "mc") {
                               for(var answer of q.getElementsByTagName("input")) {
                                 answer.setAttribute("class", "show")
+                              }
+                            } else if(type == "gap") {
+                              for(var gap of q.getElementsByTagName("gap")) {
+                                input = gap.getElementsByTagName("input")[0]
+                                answer = gap.getElementsByTagName("answer")[0]
+                                if(input.value == answer.textContent) {
+                                  input.setAttribute("class", "correct")
+                                } else {
+                                  input.setAttribute("class", "incorrect")
+                                  answer.setAttribute("class", "")
+                                }
                               }
                             }
                           }

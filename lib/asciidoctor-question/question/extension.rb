@@ -19,8 +19,7 @@ module Asciidoctor
         err = nil
 
         type = tag[:type]
-        @id = @id + 1
-        tag[:id] = @id
+        tag[:id] = @id = @id + 1
 
         if type.nil?
           err = 'Typ fehlt.'
@@ -36,7 +35,6 @@ module Asciidoctor
           block = process_error parent, err, source.lines
         end
 
-        #block.title = "Frage #{@id}"
         block
       end
     end

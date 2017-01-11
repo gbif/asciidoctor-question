@@ -10,7 +10,7 @@ module Asciidoctor
         use_dsl
 
         def self.inherited(subclass)
-          subclass.option :contexts, [:example, :listing, :literal, :open]
+          subclass.option :contexts, [:example, :literal, :open]
           subclass.option :content_model, :simple
         end
 
@@ -29,7 +29,7 @@ module Asciidoctor
           id = tag[:id]
           parent.blocks.push Asciidoctor::Block.new parent, :pass, :source => "
             <p style=\"margin-bottom: 25px\">
-              <button onclick='resolve(#{id})'>Lösen</button>
+              <button onclick='resolve(#{id})'>resolve</button>
             </p>"
           parent
         end

@@ -1,41 +1,213 @@
-# Asciidoctor::Question
+= Asciidoctor Question
+Marcel Hoppe <marcel.hoppe@mni.thm.de>
+:description: README for the Asciidoctor Question extension for Asciidoctor.
+:version: 0.3
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/asciidoctor/question`. To experiment with that code, run `bin/console` for an interactive prompt.
+++++
+<style id="question">
+    .hidden {
+      display: none;
+    }
 
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'asciidoctor-question'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install asciidoctor-question
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/asciidoctor-question. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+    div[id*=question][data-type=gap] gap > input.incorrect {
+      font-weight: bold;
+      color: red;
+    }
 
 
-## License
+    div[id*=question][data-type=gap] gap > answer, div[id*=question][data-type=gap] gap > input.correct {
+      font-weight: bold;
+      color: green;
+    }
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+    div[id*=question][data-type=mc] input[type="checkbox"]::before {
+      display: block;
+      width: 16px;
+      height: 16px;
+      margin-top: -3px;
+      margin-left: -17px;
+    }
 
+    div[id*=question][data-type=mc] input[type="checkbox"][data-correct="true"].show::before {
+      content: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIxNnB4IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjE2cHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGZpbGw9Im9saXZlZHJhYiIgc3Ryb2tlPSJvbGl2ZWRyYWIiIGQ9Ik0yMS42NTIsMy4yMTFjLTAuMjkzLTAuMjk1LTAuNzctMC4yOTUtMS4wNjEsMEw5LjQxLDE0LjM0ICBjLTAuMjkzLDAuMjk3LTAuNzcxLDAuMjk3LTEuMDYyLDBMMy40NDksOS4zNTFDMy4zMDQsOS4yMDMsMy4xMTQsOS4xMywyLjkyMyw5LjEyOUMyLjczLDkuMTI4LDIuNTM0LDkuMjAxLDIuMzg3LDkuMzUxICBsLTIuMTY1LDEuOTQ2QzAuMDc4LDExLjQ0NSwwLDExLjYzLDAsMTEuODIzYzAsMC4xOTQsMC4wNzgsMC4zOTcsMC4yMjMsMC41NDRsNC45NCw1LjE4NGMwLjI5MiwwLjI5NiwwLjc3MSwwLjc3NiwxLjA2MiwxLjA3ICBsMi4xMjQsMi4xNDFjMC4yOTIsMC4yOTMsMC43NjksMC4yOTMsMS4wNjIsMGwxNC4zNjYtMTQuMzRjMC4yOTMtMC4yOTQsMC4yOTMtMC43NzcsMC0xLjA3MUwyMS42NTIsMy4yMTF6Ii8+PC9zdmc+);
+    }
+
+    div[id*=question][data-type=mc] input[type="checkbox"][data-correct="false"].show::before {
+      content: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIxNnB4IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjE2cHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGZpbGw9Im1hcm9vbiIgc3Ryb2tlPSJtYXJvb24iIGQ9Ik0yMi4yNDUsNC4wMTVjMC4zMTMsMC4zMTMsMC4zMTMsMC44MjYsMCwxLjEzOWwtNi4yNzYsNi4yN2MtMC4zMTMsMC4zMTItMC4zMTMsMC44MjYsMCwxLjE0bDYuMjczLDYuMjcyICBjMC4zMTMsMC4zMTMsMC4zMTMsMC44MjYsMCwxLjE0bC0yLjI4NSwyLjI3N2MtMC4zMTQsMC4zMTItMC44MjgsMC4zMTItMS4xNDIsMGwtNi4yNzEtNi4yNzFjLTAuMzEzLTAuMzEzLTAuODI4LTAuMzEzLTEuMTQxLDAgIGwtNi4yNzYsNi4yNjdjLTAuMzEzLDAuMzEzLTAuODI4LDAuMzEzLTEuMTQxLDBsLTIuMjgyLTIuMjhjLTAuMzEzLTAuMzEzLTAuMzEzLTAuODI2LDAtMS4xNGw2LjI3OC02LjI2OSAgYzAuMzEzLTAuMzEyLDAuMzEzLTAuODI2LDAtMS4xNEwxLjcwOSw1LjE0N2MtMC4zMTQtMC4zMTMtMC4zMTQtMC44MjcsMC0xLjE0bDIuMjg0LTIuMjc4QzQuMzA4LDEuNDE3LDQuODIxLDEuNDE3LDUuMTM1LDEuNzMgIEwxMS40MDUsOGMwLjMxNCwwLjMxNCwwLjgyOCwwLjMxNCwxLjE0MSwwLjAwMWw2LjI3Ni02LjI2N2MwLjMxMi0wLjMxMiwwLjgyNi0wLjMxMiwxLjE0MSwwTDIyLjI0NSw0LjAxNXoiLz48L3N2Zz4=);
+    }
+</style>
+
+<script type="text/javascript">
+function resolve(questionId) {
+  var q = document.getElementById("question_" + questionId)
+  var type = q.getAttribute("data-type")
+  if(type == "mc") {
+    for(var answer of q.getElementsByTagName("input")) {
+      answer.setAttribute("class", "show")
+    }
+  } else if(type == "gap") {
+    for(var gap of q.getElementsByTagName("gap")) {
+      input = gap.getElementsByTagName("input")[0]
+      answer = gap.getElementsByTagName("answer")[0]
+      if(input.value == answer.textContent) {
+        input.setAttribute("class", "correct")
+      } else {
+        input.setAttribute("class", "incorrect")
+        answer.setAttribute("class", "")
+      }
+    }
+  }
+}
+</script>
+++++
+
+ifdef::env-github[:toc: macro]
+ifndef::env-site[:toc: preamble]
+ifndef::imagesdir[:imagesdir: images]
+:icons: font
+:source-highlighter: coderay
+:source-language: asciidoc
+:table-caption!:
+:example-caption!:
+:figure-caption!:
+:check: icon:check[]
+ifdef::env-github[:check: :ballot_box_with_check:]
+ifndef::env-site[:status:]
+:uri-asciidoctor-api: http://asciidoctor.org/docs/user-manual/#api
+:uri-asciidoctor-extensions: http://asciidoctor.org/docs/user-manual/#extension-points
+
+Asciidoctor Question is a set of Asciidoctor extensions that allows you to add questions as multiple choice and gap text. The questions are defined using plain text in your AsciiDoc document.
+ifdef::status[]
+[discrete]
+== Status
+
+image:https://img.shields.io/gem/v/asciidoctor-question.svg?label=gem%20version[Gem Version, link=https://rubygems.org/gems/asciidoctor-question]
+endif::status[]
+
+ifeval::["{toc-placement}" == "macro"]
+[discrete]
+== Contents
+
+toc::[title={blank}]
+endif::[]
+
+== Installation
+
+There are two options to install Asciidoctor Question. First using `gem install` on the CLI:
+
+ $ gem install asciidoctor-question
+
+or by adding the following entry to your project's [.path]_Gemfile_.
+
+.Gemfile
+[source,ruby,subs="verbatim,attributes"]
+----
+gem 'asciidoctor-question', '~> {version}'
+----
+
+and execute `bundle` in the CLI.
+
+ $ bundle
+
+== Creating a Question
+
+A question is written inside a literal block, which needs two attributes.
+
+.Anatomy of a question
+----
+[question, question-type] // <1> <2>
+.... // <3>
+Question in appropriate syntax
+....
+----
+<1> The first positional attribute in the attribute list specifies that this block is a question.
+<2> The second positional attribute defines the type of this question (mc or gap)
+<3> Place the attribute list directly on top of the delimited literal block (+....+). You can also use an example (+====+) or open block (`--`) as an alternative.
+
+The following question types are available:
+
+[cols="2,3a,3a",options="header"]
+|===
+|Question Type
+|input
+|output
+
+|mc
+|
+[source]
+----
+[question, mc]
+....
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+
+- [X] ipsum
+- [ ] eltir
+- [X] ut
+....
+----
+|
+++++
+<div id="question_1" class="openblock" data-type="mc">
+<div class="content">
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><input type="checkbox" data-item-complete="1" data-correct="true"> ipsum</p>
+</li>
+<li>
+<p><input type="checkbox" data-item-complete="0" data-correct="false"> eltir</p>
+</li>
+<li>
+<p><input type="checkbox" data-item-complete="1" data-correct="true"> ut</p>
+</li>
+</ul>
+</div>
+            <p style="margin-bottom: 25px">
+              <button onclick="resolve(1)">resolve</button>
+            </p>
+</div>
+</div>
+++++
+|gap
+|
+[source]
+----
+[question, gap]
+....
+At vero eos et __accusam__ et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea __takimata sanctus est Lorem__ ipsum dolor sit amet. Lorem __ipsum dolor sit amet__, consetetur sadipscing elitr, sed diam nonumy __eirmod tempor invidunt__ ut labore et dolore magna aliquyam erat, sed diam voluptua.
+....
+----
+|
+++++
+<div id="question_2" class="openblock" data-type="gap">
+<div class="content">
+<div class="paragraph">
+<p>At vero eos et <gap> <input type="text"> <answer class="hidden">accusam</answer> </gap> et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea <gap> <input type="text"> <answer class="hidden">takimata sanctus est Lorem</answer> </gap> ipsum dolor sit amet. Lorem <gap> <input type="text"> <answer class="hidden">ipsum dolor sit amet</answer> </gap>, consetetur sadipscing elitr, sed diam nonumy <gap> <input type="text"> <answer class="hidden">eirmod tempor invidunt</answer> </gap> ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+</div>
+            <p style="margin-bottom: 25px">
+              <button onclick="resolve(2)">resolve</button>
+            </p>
+</div>
+</div>
+++++
+|===
+
+
+== Generating a Question Document from a Terminal
+
+You can load Asciidoctor question in a terminal using the `-r` flag.
+
+ $ asciidoctor -r asciidoctor-question sample.adoc
+
+You can also use Asciidoctor question with other converters, such as Asciidoctor PDF.
+Asciidoctor-pdf is also loaded with the `-r` flag.
+
+ $ asciidoctor -r asciidoctor-question -r asciidoctor-pdf -b pdf sample.adoc
+
+Or, you can invoke Asciidoctor and the PDF converter with the `asciidoctor-pdf` command.
+The command implicitly sets the `-r` and `-b` flags for PDF output.
+
+ $ asciidoctor-pdf -r asciidoctor-question sample.adoc

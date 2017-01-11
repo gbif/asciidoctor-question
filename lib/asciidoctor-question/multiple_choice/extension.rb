@@ -15,7 +15,7 @@ module Asciidoctor
         switch = false
 
         source.lines.each do |line|
-          switch = true if line.start_with?("-")
+          switch = true if line =~ /^-\s?\[/
           if switch
             answers.push line
           else

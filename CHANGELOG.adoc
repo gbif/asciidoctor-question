@@ -1,0 +1,28 @@
+= Asciidoctor-question Changelog
+
+== Development
+
+== 0.3
+
+Enhancements::
+
+  * add README.adoc
+  * add LICENSE.adoc
+  * add CHANGELOG.adoc
+
+Bug Fixes::
+
+  * fix gaps in source code blocks
+  * make the before icons smaller
+
+== 0.2
+
+Enhancements::
+
+  * add support for the `question` block with gap type
+
+== 0.1
+
+Initial release::
+
+  * Provides Asciidoctor extension for `question` blocks with a mc type

@@ -1,5 +1,4 @@
 
-[question]
 ----
 Das hier ist eine Frage:
 test
@@ -18,21 +17,48 @@ test
 
 [question, gap]
 .Frage 1
-----
+====
 Lorem __ipsum__ dolor sit amet, consetetur __sadipscing__ elitr,
-sed diam nonumy eirmod __tempor__ invidunt ut labore et dolore
+sed diam nonumy eirmod __tempor invidunt ut__ labore et dolore
 magna aliquyam erat, sed diam voluptua. At vero eos et
-accusam et justo duo dolores et ea rebum. Stet clita kasd
-gubergren, no sea takimata __sanctus__ est Lorem ipsum dolor sit amet.
+accusam et justo duo dolores et ea rebum.
+
+----
+Stet clita kasd gubergren, no sea takimata __sanctus__ est Lorem ipsum dolor sit amet.
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
 sed diam nonumy eirmod tempor __invidunt__ ut labore et
 dolore magna aliquyam erat, sed diam voluptua.
+----
+
 At vero eos et __accusam__ et justo duo dolores et ea rebum.
 Stet clita kasd gubergren, no sea takimata __sanctus__ est Lorem ipsum dolor sit amet.
-----
+====
 
 [question, mc]
+====
+Das hier ist eine Frage:
 ----
+test
+----
+
+- [ ] Hallo 1234
+pkfsepgkdsjghü ojsoip jhsotjhotsjoh std oh sodn hodnh adinhididnhdtd dp dknwodh snmhd öndpishdod mdhopj
+- [*] test
+====
+
+[question, mc]
+....
+====
+test
+====
+
+- [ ] Hallo 1234
+pkfsepgkdsjghü ojsoip jhsotjhotsjoh std oh sodn hodnh adinhididnhdtd dp dknwodh snmhd öndpishdod mdhopj
+- [*] test
+....
+
+[question, mc]
+--
 Das hier ist eine Frage:
 ====
 test
@@ -41,27 +67,4 @@ test
 - [ ] Hallo 1234
 pkfsepgkdsjghü ojsoip jhsotjhotsjoh std oh sodn hodnh adinhididnhdtd dp dknwodh snmhd öndpishdod mdhopj
 - [*] test
-----
-
-[question, mc]
-----
-====
-test
-====
-
-- [ ] Hallo 1234
-pkfsepgkdsjghü ojsoip jhsotjhotsjoh std oh sodn hodnh adinhididnhdtd dp dknwodh snmhd öndpishdod mdhopj
-- [*] test
-----
-
-[question, mc]
-----
-Das hier ist eine Frage:
-====
-test
-====
-
-- [ ] Hallo 1234
-pkfsepgkdsjghü ojsoip jhsotjhotsjoh std oh sodn hodnh adinhididnhdtd dp dknwodh snmhd öndpishdod mdhopj
-- [*] test
-----
+--

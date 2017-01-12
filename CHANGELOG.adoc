@@ -9,11 +9,13 @@ Enhancements::
   * add README.adoc
   * add LICENSE.adoc
   * add CHANGELOG.adoc
+  * add reset button to every question
 
 Bug Fixes::
 
-  * fix gaps in source code blocks
-  * make the before icons smaller
+  * add the macro substitution to source blocks, if it is in a gap text question
+  * make the mc correct or incorrect icons smaller
+  * mc correct and incorrect icons not working in firefox
 
 == 0.2
 

@@ -30,6 +30,7 @@ module Asciidoctor
           parent.blocks.push Asciidoctor::Block.new parent, :pass, :source => "
             <p style=\"margin-bottom: 25px\">
               <button onclick='resolve(#{id})'>resolve</button>
+              <button onclick='reset(#{id})'>reset</button>
             </p>"
           parent
         end

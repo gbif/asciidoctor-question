@@ -1,28 +1,11 @@
-
-----
-Das hier ist eine Frage:
-test
-====
-test
-====
-
-- [ ] 1
-- [*] 2
-- [*] 3
-- [ ] 4
-- [*] 5
-- [ ] 6
-- [*] 7
-----
-
 [question, gap]
-.Frage 1
 ====
 Lorem __ipsum__ dolor sit amet, consetetur __sadipscing__ elitr,
 sed diam nonumy eirmod __tempor invidunt ut__ labore et dolore
 magna aliquyam erat, sed diam voluptua. At vero eos et
 accusam et justo duo dolores et ea rebum.
 
+[source,ruby]
 ----
 Stet clita kasd gubergren, no sea takimata __sanctus__ est Lorem ipsum dolor sit amet.
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr,

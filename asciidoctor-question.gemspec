@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors       = ["Marcel Hoppe"]
   s.email         = ["marcel.hoppe@mni.thm.de"]
   s.description   = %q{Asciidoctor questioning extension.rb}
-  s.summary       = %q{An extension.rb for asciidoctor-question that adds support for multiple choise and gap questions}
+  s.summary       = %q{An extension.rb for asciidoctor-question that adds support for multiple choice and gap questions}
   s.platform      = $platform
   s.homepage      = "https://github.com/hobbypunk90/asciidoctor-question"
   s.license       = "MIT"

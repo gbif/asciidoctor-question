@@ -24,6 +24,8 @@ module Asciidoctor
         loop do
           block = Asciidoctor::Parser.next_block reader, new_parent
           break if block.nil?
+
+          block.subs.push :macros if block.context == :listing
           new_parent.blocks.push block
         end
 

@@ -23,6 +23,14 @@ module Asciidoctor
           end
         end
 
+        answers.map! do |answer|
+          if answer =~ /^-\s?\[/ then
+            answer.sub ']', '] +++ <span/> +++'
+          else
+            answer
+          end
+        end
+
         new_parent = Asciidoctor::Block.new parent, :open, {:attributes => {'id' => "question_mc_#{id}"}}
 
         reader = Asciidoctor::Reader.new(question)

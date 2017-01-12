@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.license       = "MIT"
 
   begin
-    s.files             = `git ls-files -z -- */* {CHANGELOG,LICENSE,README,Rakefile}*`.split "\0"
+    s.files             = `git ls-files -z -- */* {CHANGELOG,LICENSE,images,Rakefile}*`.split "\0"
   rescue
     s.files             = Dir['**/*']
   end

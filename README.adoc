@@ -1,7 +1,7 @@
 = Asciidoctor Question
 Marcel Hoppe <marcel.hoppe@mni.thm.de>
 :description: README for the Asciidoctor Question extension for Asciidoctor.
-:version: 0.4
+:version: 0.4.1
 
 ifdef::env-github[:toc: macro]
 ifndef::env-site[:toc: preamble]
@@ -128,3 +128,14 @@ Or, you can invoke Asciidoctor and the PDF converter with the `asciidoctor-pdf` 
 The command implicitly sets the `-r` and `-b` flags for PDF output.
 
  $ asciidoctor-pdf -r asciidoctor-question sample.adoc
+
+== Advanced Usage
+
+=== Generating PDF with solutions
+
+With the attribute :solution: it is possible to generate a pdf file
+which contains the questions with its solutions.
+
+ $ asciidoctor -r asciidoctor-question -r asciidoctor-pdf -b pdf -a solution sample.adoc
+
+You can also add the `:solution:` attribute to your asciidoc file.

@@ -13,9 +13,10 @@ Gem::Specification.new do |s|
   s.platform      = $platform
   s.homepage      = "https://github.com/hobbypunk90/asciidoctor-question"
   s.license       = "MIT"
+  s.required_ruby_version = ['>= 2.3', '~> 2']
 
   begin
-    s.files             = `git ls-files -z -- */* {CHANGELOG,LICENSE,images,Rakefile}*`.split "\0"
+    s.files             = `git ls-files -z -- */* {CHANGELOG,LICENSE,README,Rakefile}*`.split "\0"
   rescue
     s.files             = Dir['**/*']
   end

@@ -13,7 +13,7 @@ module Asciidoctor
 
         question.map! do |line|
           line.gsub /__([^_]+?)__/ do |value|
-            prepare_gap value.gsub '_', ''
+            prepare_gap value.gsub('_', ''), tag
           end
         end
 
@@ -25,7 +25,10 @@ module Asciidoctor
           block = Asciidoctor::Parser.next_block reader, new_parent
           break if block.nil?
 
-          block.subs.push :macros if block.context == :listing
+          if block.context == :listing
+            block.subs.push :macros
+            block.subs.push :quotes
+          end
           new_parent.blocks.push block
         end
 
@@ -38,14 +41,19 @@ module Asciidoctor
         new_parent
       end
 
-      def prepare_gap(value)
+      def prepare_gap(value, tag)
         value
       end
    end
 
     class PDFGAPBlockProcessor < GAPBlockProcessor
-      def prepare_gap(value)
-        "+++ #{'_' * (value.size + Random.rand(6))} +++"
+      def prepare_gap(value, tag)
+        if tag[:solution] then
+          "`[red]## +++__#{value}__+++ ##`"
+        else
+          "+++ #{'_' * (value.size + 4)} +++"
+        end
+
       end
 
       def post_answers(parent, tag)
@@ -56,7 +64,7 @@ module Asciidoctor
 
     class HTMLGAPBlockProcessor < GAPBlockProcessor
 
-      def prepare_gap(value)
+      def prepare_gap(value, tag)
         '+++<gap> <input type="text"/> <answer class="hidden">' + value + '</answer> </gap>+++'
       end
     end

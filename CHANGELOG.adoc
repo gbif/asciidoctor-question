@@ -2,6 +2,11 @@
 
 == Development
 
+== 0.4
+
+Enhancements::
+  * add attribute :solution: for PDF generation - this generates a PDF with the solutions to the questions
+
 == 0.3
 
 Enhancements::

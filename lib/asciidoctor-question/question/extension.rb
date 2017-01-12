@@ -21,6 +21,8 @@ module Asciidoctor
         type = tag[:type]
         tag[:id] = @id = @id + 1
 
+        tag[:solution] = !parent.attributes['solution'].nil?
+
         if type.nil?
           err = 'Typ fehlt.'
         end

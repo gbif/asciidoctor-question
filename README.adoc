@@ -1,7 +1,7 @@
 = Asciidoctor Question
 Marcel Hoppe <marcel.hoppe@mni.thm.de>
 :description: README for the Asciidoctor Question extension for Asciidoctor.
-:version: 0.3
+:version: 0.4
 
 ++++
 <style id="question">
@@ -76,13 +76,10 @@ ifndef::env-site[:status:]
 :uri-asciidoctor-api: http://asciidoctor.org/docs/user-manual/#api
 :uri-asciidoctor-extensions: http://asciidoctor.org/docs/user-manual/#extension-points
 
-Asciidoctor Question is a set of Asciidoctor extensions that allows you to add questions as multiple choice and gap text. The questions are defined using plain text in your AsciiDoc document.
-ifdef::status[]
-[discrete]
-== Status
-
 image:https://img.shields.io/gem/v/asciidoctor-question.svg?label=gem%20version[Gem Version, link=https://rubygems.org/gems/asciidoctor-question]
-endif::status[]
+image:https://img.shields.io/badge/license-MIT-blue.svg[MIT License, link=#copyright]
+
+Asciidoctor Question is a set of Asciidoctor extensions that allows you to add questions as multiple choice and gap text. The questions are defined using plain text in your AsciiDoc document.
 
 ifeval::["{toc-placement}" == "macro"]
 [discrete]

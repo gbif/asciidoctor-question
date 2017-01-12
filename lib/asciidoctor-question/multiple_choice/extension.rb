@@ -23,13 +23,7 @@ module Asciidoctor
           end
         end
 
-        answers.map! do |answer|
-          if answer =~ /^-\s?\[/ then
-            answer.sub ']', '] +++ <span/> +++'
-          else
-            answer
-          end
-        end
+        answers = prepare_answer_lines answers
 
         new_parent = Asciidoctor::Block.new parent, :open, {:attributes => {'id' => "question_mc_#{id}"}}
 
@@ -56,6 +50,10 @@ module Asciidoctor
         new_parent
       end
 
+      def prepare_answer_lines(lines)
+        lines
+      end
+
       def prepare_answers(answers_block, tag)
         answers_block.blocks.shuffle! if tag[:shuffle] == 'shuffle'
         answers_block
@@ -66,8 +64,10 @@ module Asciidoctor
     class PDFMultipleChoiceBlockProcessor < MultipleChoiceBlockProcessor
       def prepare_answers(answers_block, tag)
         super
-        answers_block.blocks.each do |answer|
-          answer.attributes.delete('checked')
+        unless tag[:solution]
+          answers_block.blocks.each do |answer|
+            answer.attributes.delete('checked')
+          end
         end
         answers_block
       end
@@ -78,6 +78,17 @@ module Asciidoctor
     end
 
     class HTMLMultipleChoiceBlockProcessor < MultipleChoiceBlockProcessor
+
+      def prepare_answer_lines(lines)
+        lines.map! do |answer|
+          if answer =~ /^-\s?\[/ then
+            answer.sub ']', '] +++ <span/> +++'
+          else
+            answer
+          end
+        end
+        lines
+      end
 
       def prepare_answers(answers_block, tag)
         super

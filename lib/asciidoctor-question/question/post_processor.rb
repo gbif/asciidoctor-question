@@ -6,8 +6,8 @@ module Asciidoctor
       def process(document, output)
         doc = Nokogiri::HTML(output)
         head = doc.at_css 'head'
-        puts `pwd`
-        file = File.open('./res/asciidoctor-question/question.css')
+        basedir = File.expand_path('../../../../', __FILE__)
+        file = File.open("#{basedir}/res/asciidoctor-question/question.css")
         head.add_child("
           <style id=\"question\">
             #{file.read}
@@ -15,7 +15,7 @@ module Asciidoctor
         ")
         file.close
 
-        file = File.open('./res/asciidoctor-question/question.js')
+        file = File.open("#{basedir}/res/asciidoctor-question/question.js")
         head.add_child("<script type=\"text/javascript\">
                           #{file.read}
                         </script>")

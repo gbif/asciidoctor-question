@@ -39,6 +39,7 @@ function reset(questionId) {
         for(pos = 0; pos < elems.length; pos++) {
             answer = elems[pos]
             answer.setAttribute("class", "")
+            answer.checked = false
         }
     } else if(type == "gap") {
         elems = q.getElementsByTagName("gap")

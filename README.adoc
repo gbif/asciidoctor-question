@@ -30,13 +30,13 @@ ifeval::["{toc-placement}" == "macro"]
 toc::[title={blank}]
 endif::[]
 
-== Installation
+== Installation and Update
 
-There are two options to install Asciidoctor Question. First using `gem install` on the CLI:
+There are two options to install Asciidoctor Question. The first is to use `gem install` on the command line:
 
  $ gem install asciidoctor-question
 
-or by adding the following entry to your project's [.path]_Gemfile_.
+The second is to add the following entry to your project's [.path]_Gemfile_.
 
 .Gemfile
 [source,ruby,subs="verbatim,attributes"]
@@ -44,9 +44,13 @@ or by adding the following entry to your project's [.path]_Gemfile_.
 gem 'asciidoctor-question', '~> {version}'
 ----
 
-and execute `bundle` in the CLI.
+and execute `bundle` in the command line.
 
  $ bundle
+
+To update `asciidoctor-question` type
+
+ $ gem update asciidoctor-question
 
 == Creating a Question
 
@@ -55,7 +59,7 @@ A question is written inside a literal block, which needs two attributes.
 .Anatomy of a question
 ----
 [question, question-type] // <1> <2>
-.... // <3>
+....                      // <3>
 Question in appropriate syntax
 ....
 ----

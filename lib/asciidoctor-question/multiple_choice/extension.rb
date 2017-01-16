@@ -25,7 +25,11 @@ module Asciidoctor
 
         answers = prepare_answer_lines answers
 
-        new_parent = Asciidoctor::Block.new parent, :open, {:attributes => {'id' => "question_mc_#{id}"}}
+        attrs = {'id' => "question_#{id}_type=mc"}
+
+        attrs['id'] += '_shuffle' unless tag[:shuffle].nil?
+
+        new_parent = Asciidoctor::Block.new parent, :open, {:attributes => attrs}
 
         reader = Asciidoctor::Reader.new(question)
         loop do
@@ -55,7 +59,7 @@ module Asciidoctor
       end
 
       def prepare_answers(answers_block, tag)
-        answers_block.blocks.shuffle! if tag[:shuffle] == 'shuffle'
+        answers_block.blocks.shuffle! if tag[:shuffle]
         answers_block
       end
 
@@ -91,7 +95,6 @@ module Asciidoctor
       end
 
       def prepare_answers(answers_block, tag)
-        super
         id = tag[:id]
         aid = -1
         answers_block.attributes['id'] = "answers_mc_#{id}"

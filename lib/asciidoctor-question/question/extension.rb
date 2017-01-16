@@ -19,6 +19,7 @@ module Asciidoctor
         err = nil
 
         type = tag[:type]
+        type = tag[:type] = 'mc' if type == 'mc' or type == 'multiplechoice' or type == 'multiple_choice'
         tag[:id] = @id = @id + 1
 
         tag[:solution] = !parent.attributes['solution'].nil?
@@ -28,7 +29,7 @@ module Asciidoctor
         end
 
         if err.nil?
-          if type == 'mc' or type == 'multiplechoice' or type == 'multiple_choice'
+          if type == 'mc'
             block = process_question_mc parent, source, tag
           elsif type == 'gap'
             block = process_question_gap parent, source, tag

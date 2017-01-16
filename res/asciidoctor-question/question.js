@@ -1,3 +1,29 @@
+function onLoad() {
+    var questions = document.getElementsByTagName("question")
+    for (var pos = 0; pos < questions.length; pos++) {
+        var question = questions[pos]
+        if (question.getAttribute('data-type') == 'mc') {
+            if (question.getAttribute('data-shuffle') != null) shuffleAnswers(question)
+        }
+    }
+}
+
+function shuffleAnswers(question) {
+    var answers = null
+    var content = question.children[0]
+    for (var i = content.children.length-1; i >= 0; i--) {
+        if(content.children[i].className.indexOf('checklist') > -1) {
+            answers = content.children[i].children[0]
+            break;
+        }
+    }
+    if(answers == null) return
+
+    for (var i = answers.children.length; i >= 0; i--) {
+        answers.appendChild(answers.children[Math.random() * i | 0]);
+    }
+}
+
 function resolve(questionId) {
     var q = document.getElementById("question_" + questionId)
     var type = q.getAttribute("data-type")

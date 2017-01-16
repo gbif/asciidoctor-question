@@ -6,6 +6,7 @@ module Asciidoctor
       def process(document, output)
         doc = Nokogiri::HTML(output)
         head = doc.at_css 'head'
+        doc.at_css('body')['onload'] = 'onLoad()'
         basedir = File.expand_path('../../../../', __FILE__)
         file = File.open("#{basedir}/res/asciidoctor-question/question.css")
         head.add_child("
@@ -23,13 +24,17 @@ module Asciidoctor
 
         questions = doc.css 'div[id*=question]'
         questions.each do |question|
+          question.name = 'question'
           id = question['id']
           parts = id.split '_'
-          question['id'] = "#{parts[0]}_#{parts[2]}"
-          question['data-type'] = parts[1]
+          question['id'] = "#{parts.shift}_#{parts.shift}"
+          parts.each do |data|
+            tmp = data.split '='
+            question['data-' + tmp[0]] = (tmp[1].nil?)?nil:tmp[1]
+          end
         end
 
-        answers = doc.css 'div[id*=question][data-type=mc] input[type="checkbox"]'
+        answers = doc.css 'question[id*=question][data-type=mc] input[type="checkbox"]'
         answers.each do |answer|
           answer['data-correct'] = answer.key?('checked')
           answer.delete('checked')

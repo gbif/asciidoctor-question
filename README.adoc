@@ -1,7 +1,7 @@
 = Asciidoctor Question
 Marcel Hoppe <marcel.hoppe@mni.thm.de>
 :description: README for the Asciidoctor Question extension for Asciidoctor.
-:version: 0.4.1
+:version: 0.5
 
 ifdef::env-github[:toc: macro]
 ifndef::env-site[:toc: preamble]

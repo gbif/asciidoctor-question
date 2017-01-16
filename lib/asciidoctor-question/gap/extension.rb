@@ -17,7 +17,7 @@ module Asciidoctor
           end
         end
 
-        new_parent = Asciidoctor::Block.new parent, :open, {:attributes => {'id' => "question_gap_#{id}"}}
+        new_parent = Asciidoctor::Block.new parent, :open, {:attributes => {'id' => "question_#{id}_type=gap"}}
 
         reader = Asciidoctor::Reader.new question
 

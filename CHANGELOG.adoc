@@ -1,6 +1,12 @@
 = Asciidoctor-question Changelog
 
-== Development
+== 0.5
+
+Enhancements::
+  * Issue #2
+
+Bugs::
+  * Issue #3
 
 == 0.4
 

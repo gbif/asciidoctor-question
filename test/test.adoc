@@ -30,7 +30,7 @@ pkfsepgkdsjghü ojsoip jhsotjhotsjoh std oh sodn hodnh adinhididnhdtd dp dknwodh
 - [*] test
 ====
 
-[question, mc]
+[question, mc, shuffle]
 ....
 ====
 test
@@ -41,14 +41,21 @@ pkfsepgkdsjghü ojsoip jhsotjhotsjoh std oh sodn hodnh adinhididnhdtd dp dknwodh
 - [*] test
 ....
 
-[question, mc]
+[question, mc, shuffle]
 --
 Das hier ist eine Frage:
 ====
 test
 ====
 
-- [ ] Hallo 1234
-pkfsepgkdsjghü ojsoip jhsotjhotsjoh std oh sodn hodnh adinhididnhdtd dp dknwodh snmhd öndpishdod mdhopj
-- [*] test
+- [*] 0
+- [ ] 1
+- [*] 2
+- [ ] 3
+- [*] 4
+- [ ] 5
+- [*] 6
+- [ ] 7
+- [*] 8
+- [ ] 9
 --

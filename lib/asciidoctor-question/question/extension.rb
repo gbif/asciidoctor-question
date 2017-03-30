@@ -22,7 +22,7 @@ module Asciidoctor
         type = tag[:type] = 'mc' if type == 'mc' or type == 'multiplechoice' or type == 'multiple_choice'
         tag[:id] = @id = @id + 1
 
-        tag[:solution] = !parent.attributes['solution'].nil?
+        tag[:solution] = has_solution parent
 
         if type.nil?
           err = 'Typ fehlt.'
@@ -39,6 +39,18 @@ module Asciidoctor
         end
 
         block
+      end
+
+      def has_solution(parent)
+        if not ( parent.document.attributes['solution'].nil? and parent.attributes['solution'].nil? )
+          true
+        else
+          if parent.parent.nil?
+            false
+          else
+            has_solution(parent.parent)
+          end
+        end
       end
     end
 

@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version       = Asciidoctor::Question::VERSION
   s.authors       = ["Marcel Hoppe"]
   s.email         = ["marcel.hoppe@mni.thm.de"]
-  s.description   = %q{Asciidoctor questioning extension.rb}
+  s.description   = %q{Asciidoctor Question is a set of Asciidoctor extensions that allows you to add questions as multiple choice and gap text. The questions are defined using plain text in your AsciiDoc document.}
   s.summary       = %q{An extension.rb for asciidoctor-question that adds support for multiple choice and gap questions}
   s.platform      = $platform
   s.homepage      = "https://github.com/hobbypunk90/asciidoctor-question"

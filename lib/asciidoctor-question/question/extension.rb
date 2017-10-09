@@ -9,9 +9,10 @@ module Asciidoctor
     class QuestionBlockProcessor < Extensions::BaseProcessor
       name_positional_attributes [:type, :shuffle]
 
+
       def initialize name = nil, config = {}
         super name, config
-        @id = 0
+        @@id = 0
       end
 
       def process(parent, source, tag)
@@ -20,7 +21,7 @@ module Asciidoctor
 
         type = tag[:type]
         type = tag[:type] = 'mc' if type == 'mc' or type == 'multiplechoice' or type == 'multiple_choice'
-        tag[:id] = @id = @id + 1
+        tag[:id] = @@id = @@id + 1
 
         tag[:solution] = has_solution parent
 

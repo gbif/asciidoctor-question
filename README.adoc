@@ -30,6 +30,27 @@ ifeval::["{toc-placement}" == "macro"]
 toc::[title={blank}]
 endif::[]
 
+== Installation for asciidoctor 2.0
+
+[source,bash]
+----
+# Uninstall previous version
+gem uninstall asciidoctor-question
+
+# Clone repo
+git clone https://github.com/vifito/asciidoctor-question.git
+
+cd asciidoctor-question
+
+# Build and install
+rake build
+rake install
+
+# Usage 
+asciidoctor -r asciidoctor-question -r asciidoctor-pdf -b pdf sample.adoc
+asciidoctor -r asciidoctor-question sample.adoc
+----
+
 == Installation and Update
 
 There are two options to install Asciidoctor Question. The first is to use `gem install` on the command line:

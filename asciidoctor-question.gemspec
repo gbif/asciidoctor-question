@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.platform      = $platform
   s.homepage      = "https://github.com/hobbypunk90/asciidoctor-question"
   s.license       = "MIT"
-  s.required_ruby_version = ['>= 2.3', '~> 2']
+  s.required_ruby_version = ['>= 2.5', '~> 2']
 
   begin
     s.files             = `git ls-files -z -- */* {CHANGELOG,LICENSE,README,Rakefile}*`.split "\0"
@@ -28,6 +28,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rake", "~> 12"
   s.add_development_dependency "rspec", "~> 3.5"
 
-  s.add_runtime_dependency "asciidoctor", "~> 1.5"
+  s.add_runtime_dependency "asciidoctor", "~> 2.0"
   s.add_runtime_dependency "nokogiri", "~> 1.6"
 end

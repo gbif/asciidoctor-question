@@ -1,0 +1,40 @@
+= Sample
+
+[question, mc]
+....
+Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod
+tempor invidunt ut labore et dolore
+magna aliquyam erat, sed diam voluptua.
+
+- [x] ipsum
+- [ ] eltir
+- [ ] ut
+....
+
+
+[question, mc]
+....
+Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod
+tempor invidunt ut labore et dolore
+magna aliquyam erat, sed diam voluptua.
+
+- [ ] ipsum
+- [ ] eltir
+- [x] ut
+....
+
+[question, gap]
+....
+At vero eos et __accusam__ et justo
+duo dolores et ea rebum. Stet clita
+kasd gubergren, no sea __takimata
+sanctus est Lorem__ ipsum dolor sit
+amet. Lorem __ipsum dolor sit amet__,
+consetetur sadipscing elitr, sed diam
+nonumy __eirmod tempor invidunt__ ut
+labore et dolore magna aliquyam erat,
+sed diam voluptua.
+....
+

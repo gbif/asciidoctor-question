@@ -12,3 +12,6 @@
 /test/*.pdf
 /test/*.html
 *.gem
+.rake_tasks~
+sample.pdf
+sample.html
